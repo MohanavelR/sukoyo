@@ -1,0 +1,617 @@
+/* main.qss - Sidebar Navigation Buttons */
+QWidget {
+    background: {{bg_primary}};
+    color: {{text_primary}};
+    font-size: 14px;
+}
+
+QMainWindow {
+    background: {{bg_primary}};
+}
+
+#CentralWidget {
+    background: {{bg_primary}};
+}
+
+/* ========================================
+   SIDEBAR STYLES
+   ======================================== */
+#Sidebar {
+    background: {{bg_secondary}};
+    min-width: 240px;
+    max-width: 240px;
+    border-right: 1px solid {{border_primary}};
+}
+
+#Sidebar[collapsed="true"] {
+    min-width: 64px;
+    max-width: 64px;
+}
+
+#SidebarLogo {
+    color: {{text_primary}};
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    letter-spacing: 1px;
+    background: transparent;
+}
+
+#SidebarToggleButton {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 4px;
+}
+
+#SidebarToggleButton:hover {
+    background: {{hover_bg_primary}};
+}
+
+#SidebarToggleButton:pressed {
+    background: {{active_bg_primary}};
+}
+
+/* Navigation Buttons */
+QPushButton[class="nav-button"] {
+    text-align: left;
+    padding: 14px 20px;
+    border: none;
+    background-color: transparent;
+    color: {{text_secondary}};
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    border-radius: 0px;
+}
+
+QPushButton[class="nav-button"]:hover {
+    background-color: {{hover_bg_secondary}};
+    color: {{hover_text_primary}};
+}
+
+QPushButton[class="nav-button"]:checked {
+    background-color: {{active_bg_secondary}};
+    color: {{active_text_primary}};
+    border-left: 3px solid {{border_accent}};
+}
+
+QPushButton[class="nav-button"]:checked:hover {
+    background-color: {{active_bg_accent}};
+}
+
+/* ========================================
+   CONTENT AREA
+   ======================================== */
+#ContentWidget {
+    background: {{bg_primary}};
+}
+
+#ContentScrollArea {
+    background: {{bg_primary}};
+    border: none;
+}
+
+#ContentScrollArea QScrollBar:vertical {
+    background: {{bg_primary}};
+    width: 12px;
+    border-radius: 6px;
+    margin: 0px;
+}
+
+#ContentScrollArea QScrollBar::handle:vertical {
+    background: {{border_secondary}};
+    border-radius: 6px;
+    min-height: 30px;
+}
+
+#ContentScrollArea QScrollBar::handle:vertical:hover {
+    background: {{text_accent}};
+}
+
+#ContentScrollArea QScrollBar::add-line:vertical,
+#ContentScrollArea QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+#ContentScrollArea QScrollBar::add-page:vertical,
+#ContentScrollArea QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+/* ========================================
+   HEADER STYLES
+   ======================================== */
+#Header {
+    background: transparent;
+    min-height: 60px;
+}
+
+#PageTitle {
+    font-size: 32px;
+    font-weight: bold;
+    color: {{text_primary}};
+    letter-spacing: -0.5px;
+    background: transparent;
+}
+
+/* User Actions */
+#UserActionsWidget {
+    background: transparent;
+}
+
+QPushButton[class="action-button"] {
+    background: {{bg_secondary}};
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    min-width: 44px;
+    max-width: 44px;
+    min-height: 44px;
+    max-height: 44px;
+}
+
+QPushButton[class="action-button"]:hover {
+    background: {{hover_bg_primary}};
+}
+
+QPushButton[class="action-button"]:pressed {
+    background: {{active_bg_primary}};
+}
+
+/* User Info */
+#UserInfoWidget {
+    background: transparent;
+}
+
+#UserName {
+    font-size: 15px;
+    font-weight: 600;
+    color: {{text_primary}};
+    background: transparent;
+}
+
+#UserRole {
+    font-size: 13px;
+    color: {{text_secondary}};
+    background: transparent;
+}
+
+/* ========================================
+   PAGES STACK
+   ======================================== */
+#PagesStack {
+    background: transparent;
+}
+
+/* ========================================
+   GLOBAL SCROLLBARS
+   ======================================== */
+QScrollBar:vertical {
+    background: {{bg_secondary}};
+    width: 12px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: {{border_secondary}};
+    border-radius: 6px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: {{text_accent}};
+}
+
+QScrollBar:horizontal {
+    background: {{bg_secondary}};
+    height: 12px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal {
+    background: {{border_secondary}};
+    border-radius: 6px;
+    min-width: 20px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: {{text_accent}};
+}
+
+/* ========================================
+   COMMON ELEMENTS
+   ======================================== */
+QPushButton {
+    background: {{bg_secondary}};
+    color: {{text_primary}};
+    border: 1px solid {{border_primary}};
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+QPushButton:hover {
+    background: {{hover_bg_primary}};
+    border-color: {{border_secondary}};
+}
+
+QPushButton:pressed {
+    background: {{active_bg_primary}};
+}
+
+QPushButton:disabled {
+    background: {{bg_secondary}};
+    color: {{text_disabled}};
+    border-color: {{border_primary}};
+}
+
+QLabel {
+    background: transparent;
+    color: {{text_primary}};
+}
+
+/* ========================================
+   SIDEBAR BASE
+   ======================================== */
+#Sidebar {
+    background-color: {{bg_secondary}};
+    min-width: 240px;
+    max-width: 240px;
+    border-right: 1px solid {{border_primary}};
+}
+
+#Sidebar[collapsed="true"] {
+    min-width: 70px;
+    max-width: 70px;
+}
+
+/* ========================================
+   NAVIGATION BUTTONS - BASE STATE
+   ======================================== */
+QPushButton[class="nav-button"] {
+    text-align: left;
+    padding: 15px 20px;
+    border: none;
+    background-color: transparent;
+    color: {{text_secondary}};
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    border-radius: 0px;
+}
+
+
+QPushButton[class="nav-button"]:hover {
+    background-color: {{hover_bg_secondary}};
+    color: {{hover_text_primary}};
+}
+
+
+QPushButton[class="nav-button"]:checked {
+    background-color: {{active_bg_secondary}};
+    color: {{active_text_primary}};
+    border-left: 3px solid {{border_accent}};
+}
+
+/* Active button hover state */
+QPushButton[class="nav-button"]:checked:hover {
+    background-color: {{active_bg_accent}};
+    color: {{active_text_primary}};
+}
+
+/* ========================================
+   NAVIGATION BUTTONS - PRESSED STATE
+   ======================================== */
+QPushButton[class="nav-button"]:pressed {
+    background-color: {{active_bg_primary}};
+    color: {{active_text_primary}};
+}
+
+/* ========================================
+   SIDEBAR TOGGLE BUTTON
+   ======================================== */
+#SidebarToggleButton {
+    background: transparent;
+    border: none;
+    text-align: left;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 4px;
+}
+
+#SidebarToggleButton:hover {
+    background: {{hover_bg_primary}};
+}
+
+#SidebarToggleButton:pressed {
+    background: {{active_bg_primary}};
+}
+
+/* ========================================
+   SIDEBAR LOGO
+   ======================================== */
+#SidebarLogo {
+    color: {{text_primary}};
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    letter-spacing: 1px;
+    background: transparent;
+}
+
+#ContentScrollArea{
+    border: none;
+    background: {{bg_primary}};
+
+}
+
+/* ========================================
+   HEADER STYLES
+   ======================================== */
+#Header {
+    background: transparent;
+    padding: 0px;
+}
+
+/* Page Title */
+#PageTitle {
+    font-size: 32px;
+    font-weight: bold;
+    color: {{text_primary}};
+    letter-spacing: -0.5px;
+    background: transparent;
+}
+
+/* ========================================
+   USER ACTIONS
+   ======================================== */
+#UserActionsWidget {
+    background: transparent;
+}
+
+/* Action Buttons (Cart, Messages, Camera, Notifications) */
+QPushButton[class="action-button"] {
+    background: {{bg_secondary}};
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    min-width: 44px;
+    max-width: 44px;
+    min-height: 44px;
+    max-height: 44px;
+}
+
+QPushButton[class="action-button"]:hover {
+    background: {{hover_bg_primary}};
+}
+
+QPushButton[class="action-button"]:pressed {
+    background: {{active_bg_primary}};
+}
+
+/* Individual button customization if needed */
+#ActionButton_Cart,
+#ActionButton_Messages,
+#ActionButton_Camera,
+#ActionButton_Notifications {
+    /* Inherits from action-button class */
+}
+
+/* ========================================
+   USER INFO
+   ======================================== */
+#UserInfoWidget {
+    background: transparent;
+}
+
+#UserName {
+    font-size: 15px;
+    font-weight: 600;
+    color: {{text_primary}};
+    background: transparent;
+}
+
+#UserRole {
+    font-size: 13px;
+    color: {{text_secondary}};
+    background: transparent;
+}
+/* ========================================
+   DASHBOARD PAGE
+   ======================================== */
+#DashboardPage {
+    background: transparent;
+}
+
+/* ========================================
+   TAB NAVIGATION
+   ======================================== */
+#TabsWidget {
+    background: transparent;
+}
+
+QPushButton[class="tab-button"] {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: {{bg_secondary}};
+    color: {{text_secondary}};
+    border: none;
+}
+
+QPushButton[class="tab-button"]:hover {
+    background-color: {{hover_bg_primary}};
+    color: {{text_primary}};
+}
+
+QPushButton[class="tab-button"]:checked {
+    background-color: {{active_bg_accent}};
+    color: {{active_text_accent}};
+}
+
+QPushButton[class="tab-button"]:checked:hover {
+    background-color: {{hover_bg_accent}};
+    color: {{hover_text_accent}};
+}
+
+/* ========================================
+   METRIC CARDS
+   ======================================== */
+#MetricsContainer {
+    background: transparent;
+}
+
+#MetricCard {
+    background: {{bg_secondary}};
+    border-radius: 12px;
+    border: 1px solid {{border_primary}};
+    min-width: 200px;
+}
+
+#MetricCard[color="red"] {
+    border-left: 4px solid #EF4444;
+}
+
+#MetricCard[color="yellow"] {
+    border-left: 4px solid #F59E0B;
+}
+
+#MetricCard[color="purple"] {
+    border-left: 4px solid #8B5CF6;
+}
+
+#MetricCard[color="pink"] {
+    border-left: 4px solid #EC4899;
+}
+
+#MetricTitle {
+    font-size: 13px;
+    color: {{text_secondary}};
+    font-weight: 500;
+    background: transparent;
+}
+
+#MetricValue {
+    font-size: 28px;
+    font-weight: bold;
+    color: {{text_primary}};
+    background: transparent;
+}
+
+#MetricArrow {
+    font-size: 16px;
+    background: transparent;
+}
+
+#MetricArrow[direction="up"] {
+    color: #10B981;
+}
+
+#MetricArrow[direction="down"] {
+    color: #EF4444;
+}
+
+#MetricChange {
+    font-size: 13px;
+    font-weight: 600;
+    background: transparent;
+}
+
+#MetricChange[direction="up"] {
+    color: #10B981;
+}
+
+#MetricChange[direction="down"] {
+    color: #EF4444;
+}
+
+#MetricSubtitle {
+    font-size: 12px;
+    color: {{text_disabled}};
+    background: transparent;
+}
+
+/* ========================================
+   INSIGHTS SECTION
+   ======================================== */
+#InsightsSection {
+    background: transparent;
+}
+
+#SectionTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: {{text_primary}};
+    background: transparent;
+}
+
+#InsightCard {
+    background: {{bg_secondary}};
+    border-radius: 12px;
+    border: 1px solid {{border_primary}};
+    min-width: 200px;
+    min-height: 150px;
+}
+
+#InsightCard:hover {
+    border-color: {{border_accent}};
+}
+
+#InsightTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: {{text_primary}};
+    background: transparent;
+}
+
+#InsightSubtitle {
+    font-size: 12px;
+    color: {{text_secondary}};
+    background: transparent;
+}
+
+#InsightValue {
+    font-size: 32px;
+    font-weight: bold;
+    color: {{text_accent}};
+    background: transparent;
+}
+
+#InsightChart {
+    font-size: 14px;
+    color: {{text_secondary}};
+    background: transparent;
+}
+
+/* ========================================
+   PRODUCT & FINANCIAL SECTIONS
+   ======================================== */
+#ProductSection,
+#FinancialSection {
+    background: transparent;
+}
+
+#ChartCard {
+    background: {{bg_secondary}};
+    border-radius: 12px;
+    border: 1px solid {{border_primary}};
+    min-height: 250px;
+}
+
+#ChartTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{text_primary}};
+    background: transparent;
+}
+
+#ChartPlaceholder {
+    font-size: 48px;
+    color: {{text_disabled}};
+    background: {{bg_accent}};
+    border-radius: 8px;
+    padding: 40px;
+}
