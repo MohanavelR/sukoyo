@@ -615,3 +615,440 @@ QPushButton[class="tab-button"]:checked:hover {
     border-radius: 8px;
     padding: 40px;
 }
+
+/* ===================================
+   INVENTORY PAGE STYLES
+   =================================== */
+
+/* Item List Panel */
+QWidget#ItemListPanel {
+    background-color: {{bg_secondary}};
+    border-right: 1px solid {{border_primary}};
+}
+
+QLabel#PanelHeader {
+    font-size: 20px;
+    font-weight: 700;
+    color: {{text_primary}};
+    padding: 0;
+    margin: 0;
+}
+
+/* Search Input */
+QLineEdit#SearchInput {
+    border: 1px solid {{border_primary}};
+    border-radius: 10px;
+    padding: 12px 16px;
+    background-color: {{bg_accent}};
+    color: {{text_primary}};
+    font-size: 14px;
+}
+
+QLineEdit#SearchInput:focus {
+    border: 1px solid {{border_accent}};
+    background-color: {{bg_primary}};
+}
+
+QLineEdit#SearchInput::placeholder {
+    color: {{text_disabled}};
+}
+
+/* Filter Buttons */
+QPushButton#FilterBtn {
+    background-color: {{bg_accent}};
+    border: 1px solid {{border_primary}};
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: {{text_secondary}};
+    font-weight: 500;
+    font-size: 13px;
+}
+
+QPushButton#FilterBtn:hover {
+    background-color: {{hover_bg_secondary}};
+    color: {{hover_text_primary}};
+}
+
+QPushButton#FilterBtn[active="true"] {
+    background-color: {{active_bg_secondary}};
+    color: {{active_text_accent}};
+    border-color: {{border_accent}};
+}
+
+/* List Widget */
+QListWidget#ItemList {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+QListWidget#ItemList::item {
+    padding: 0;
+    margin-bottom: 8px;
+    border: none;
+    background-color: transparent;
+}
+
+QListWidget#ItemList::item:hover {
+    background-color: transparent;
+}
+
+QListWidget#ItemList::item:selected {
+    background-color: transparent;
+}
+
+/* Item List Item Widget - Tab-like Style */
+QWidget#ItemListItem {
+    background-color: {{bg_accent}};
+    border: 1px solid {{border_primary}};
+    border-radius: 10px;
+    border-left: 3px solid transparent;
+}
+
+QListWidget#ItemList::item:hover QWidget#ItemListItem {
+    background-color: {{hover_bg_primary}};
+    border-color: {{border_secondary}};
+    border-left: 3px solid {{border_secondary}};
+}
+
+QListWidget#ItemList::item:selected QWidget#ItemListItem {
+    background-color: {{active_bg_primary}};
+    border: 1px solid {{border_accent}};
+    border-left: 4px solid {{border_accent}};
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+QLabel#ItemTitle {
+    font-weight: 600;
+    font-size: 14px;
+    color: {{text_primary}};
+}
+
+QLabel#ItemValue {
+    font-weight: 600;
+    font-size: 13px;
+    color: {{text_accent}};
+}
+
+QLabel#ItemSubtitle {
+    color: {{text_secondary}};
+    font-size: 12px;
+}
+
+QLabel#ItemStatus {
+    color: {{text_secondary}};
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+QLabel#ItemStatus[lowstock="true"] {
+    color: #F59E0B;
+}
+
+QLabel#ItemCount {
+    color: {{text_disabled}};
+    font-size: 12px;
+    padding-top: 8px;
+}
+
+/* Detail View Container */
+QWidget#DetailViewContainer {
+    background-color: {{bg_primary}};
+}
+
+/* Main Content */
+QWidget#MainContent {
+    background-color: {{bg_secondary}};
+    border-radius: 16px;
+    border: 1px solid {{border_primary}};
+}
+
+/* Back Button */
+QPushButton#BackBtn {
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    text-align: left;
+    background: transparent;
+    color: {{text_primary}};
+    padding: 0;
+}
+
+QPushButton#BackBtn:hover {
+    color: {{text_accent}};
+}
+
+/* Actions Container */
+QWidget#ActionsContainer {
+    background-color: transparent;
+}
+
+/* Action Buttons */
+QPushButton#ActionBtn {
+    background-color: {{bg_accent}};
+    border: 1px solid {{border_primary}};
+    border-radius: 10px;
+    padding: 10px 18px;
+    color: {{text_primary}};
+    font-weight: 500;
+    font-size: 13px;
+}
+
+QPushButton#ActionBtn:hover {
+    background-color: {{hover_bg_secondary}};
+    border-color: {{border_secondary}};
+    color: {{hover_text_primary}};
+}
+
+QPushButton#ActionBtn:pressed {
+    background-color: {{active_bg_primary}};
+}
+
+/* Stock Info Bar */
+QWidget#StockInfoBar {
+    background-color: {{bg_accent}};
+    border: 1px solid {{border_primary}};
+    border-radius: 12px;
+}
+
+QLabel#StockLabel {
+    color: {{text_secondary}};
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+QLabel#StockValue {
+    color: {{text_primary}};
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Tabs Container */
+QWidget#TabsContainer {
+    background-color: transparent;
+    border-bottom: 1px solid {{border_primary}};
+}
+
+/* Tab Buttons */
+QPushButton#TabBtn {
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 14px 20px;
+    color: {{text_secondary}};
+    font-weight: 600;
+    font-size: 14px;
+}
+
+QPushButton#TabBtn:hover {
+    color: {{hover_text_secondary}};
+    background-color: {{hover_bg_primary}};
+}
+
+QPushButton#TabBtn[active="true"] {
+    color: {{active_text_accent}};
+    border-bottom: 3px solid {{border_accent}};
+}
+
+/* Content Stack */
+QStackedWidget#ContentStack {
+    background-color: transparent;
+}
+
+/* Pages */
+QWidget#DetailsPage,
+QWidget#StockPage,
+QWidget#UOMPage,
+QWidget#BatchPage {
+    background-color: transparent;
+}
+
+/* Section Widget */
+QWidget#SectionWidget {
+    background-color: {{bg_accent}};
+    border: 1px solid {{border_primary}};
+    border-radius: 12px;
+}
+
+/* Section Title */
+QLabel#SectionTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: {{text_primary}};
+    margin: 0;
+    padding: 0;
+}
+
+/* Detail Container */
+QWidget#DetailContainer {
+    background-color: transparent;
+}
+
+/* Detail Label */
+QLabel#DetailLabel {
+    color: {{text_secondary}};
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Detail Value */
+QLabel#DetailValue {
+    color: {{text_primary}};
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Scroll Content */
+QWidget#ScrollContent {
+    background-color: transparent;
+}
+
+QScrollArea#DetailsScroll {
+    border: none;
+    background-color: transparent;
+}
+
+/* Tables */
+QTableWidget#DataTable {
+    border: 1px solid {{border_primary}};
+    gridline-color: {{border_primary}};
+    background-color: {{bg_accent}};
+    selection-background-color: {{active_bg_primary}};
+    selection-color: {{active_text_primary}};
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+QTableWidget#DataTable::item {
+    padding: 12px 16px;
+    color: {{text_primary}};
+    border-bottom: 1px solid {{border_primary}};
+}
+
+QTableWidget#DataTable::item:hover {
+    background-color: {{hover_bg_primary}};
+}
+
+QTableWidget#DataTable::item:alternate {
+    background-color: {{bg_secondary}};
+}
+
+QHeaderView::section {
+    background-color: {{bg_secondary}};
+    padding: 12px 16px;
+    border: none;
+    border-bottom: 2px solid {{border_primary}};
+    font-weight: 700;
+    color: {{text_secondary}};
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Table Action Widget */
+QWidget#TableActionWidget {
+    background-color: transparent;
+}
+
+QPushButton#TableActionBtn {
+    background-color: {{bg_primary}};
+    border: 1px solid {{border_primary}};
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: {{text_primary}};
+    font-weight: 500;
+    font-size: 12px;
+}
+
+QPushButton#TableActionBtn:hover {
+    background-color: {{hover_bg_secondary}};
+    color: {{hover_text_primary}};
+}
+
+QPushButton#TableDeleteBtn {
+    background-color: #7F1D1D;
+    border: 1px solid #991B1B;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #FEE2E2;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+QPushButton#TableDeleteBtn:hover {
+    background-color: #991B1B;
+    color: #FFFFFF;
+    border-color: #B91C1C;
+}
+
+/* Scroll Bars */
+QScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+QScrollArea#TableScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+QScrollBar:vertical {
+    background-color: {{bg_secondary}};
+    width: 12px;
+    border-radius: 6px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: {{bg_accent}};
+    border-radius: 6px;
+    min-height: 30px;
+    margin: 2px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: {{hover_bg_secondary}};
+}
+
+QScrollBar::add-line:vertical, 
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical, 
+QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+QScrollBar:horizontal {
+    background-color: {{bg_secondary}};
+    height: 12px;
+    border-radius: 6px;
+    margin: 0;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: {{bg_accent}};
+    border-radius: 6px;
+    min-width: 30px;
+    margin: 2px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: {{hover_bg_secondary}};
+}
+
+QScrollBar::add-line:horizontal, 
+QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+QScrollBar::add-page:horizontal, 
+QScrollBar::sub-page:horizontal {
+    background: none;
+}

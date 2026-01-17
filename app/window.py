@@ -6,6 +6,7 @@ from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 import sys
 from pages.dashboard import DashboardPage
+from pages.inventory import InventoryPage
 
 from config.settings import Settings
 from config.theme_manager import ThemeManager
@@ -57,7 +58,6 @@ class MainWindow(QMainWindow):
         self.content_scroll.setObjectName("ContentScrollArea")
         self.content_scroll.setWidgetResizable(True)
         self.content_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        # No inline styles - QSS handles it!
         
         # Content widget inside scroll area
         self.content_widget = QWidget()
@@ -72,12 +72,25 @@ class MainWindow(QMainWindow):
         self.header = Header(title="Dashboard")
         self.content_layout.addWidget(self.header)
         
-        # Stacked widget for pages (placeholder for future pages)
+        # Stacked widget for pages
         self.pages = QStackedWidget()
         self.pages.setObjectName("PagesStack")
         self.content_layout.addWidget(self.pages)
+        
+        # Initialize pages
         self.dashboard_page = DashboardPage()
+        self.inventory_page = InventoryPage()
+        
+        # Add pages to stack
         self.pages.addWidget(self.dashboard_page)
+        self.pages.addWidget(self.inventory_page)
+        
+        # Store page mapping for easy access
+        self.page_widgets = {
+            "dashboard": self.dashboard_page,
+            "inventory": self.inventory_page,
+        }
+        
         # Add stretch to push content to top
         self.content_layout.addStretch()
         
@@ -88,21 +101,34 @@ class MainWindow(QMainWindow):
         """Handle page navigation from sidebar"""
         print(f"Switching to page: {page_id}")
         
-        # Update header title based on page
+        # Page titles mapping
         page_titles = {
             "dashboard": "Dashboard",
             "analytics": "Analytics",
             "products": "Products",
             "orders": "Orders",
-            "customers": "Customers",
+            "inventory": "Inventory",
             "settings": "Settings",
         }
         
+        # Update header title
         title = page_titles.get(page_id, "Dashboard")
         self.header.set_title(title)
         
-        # TODO: Switch to actual page widget when implemented
-        # self.pages.setCurrentWidget(self.page_widgets[page_id])
+        # Switch to the actual page if it exists
+        if page_id in self.page_widgets:
+            self.pages.setCurrentWidget(self.page_widgets[page_id])
+            
+            # Adjust scroll area policy based on page
+            if page_id == "inventory":
+                # Inventory page has its own internal scrolling
+                self.content_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            else:
+                # Other pages use the content area scroll
+                self.content_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        else:
+            # Page not implemented yet - stay on current page or show dashboard
+            print(f"Page '{page_id}' not implemented yet")
     
     def update_theme(self):
         """Refresh UI when theme changes"""
@@ -110,5 +136,4 @@ class MainWindow(QMainWindow):
         self.style().unpolish(self)
         self.style().polish(self)
         self.update()
-
 
