@@ -45,8 +45,7 @@ class CircularProgress(QWidget):
             
             # Percentage text
             painter.setPen(QColor(self.color))
-            font = QFont("Segoe UI", 18, QFont.Bold)
-            painter.setFont(font)
+            
             painter.drawText(self.rect(), Qt.AlignCenter, f"{int(self.percentage)}%")
             
         except Exception as e:
@@ -93,12 +92,12 @@ class BarChartWidget(QWidget):
                     painter.drawLine(int(x + bar_width / 2), 10, int(x + bar_width / 2), int(y))
                     
                     painter.setPen(QColor("#111827"))
-                    font = QFont("Segoe UI", 10, QFont.Bold)
+                    font = QFont("inter", 10, QFont.Bold)
                     painter.setFont(font)
                     painter.drawText(int(x - 15), 25, f"₹{value:,}")
                 
                 painter.setPen(QColor("#6b7280"))
-                font = QFont("Segoe UI", 9)
+                font = QFont("inter", 9)
                 painter.setFont(font)
                 painter.drawText(int(x), height + 30, bar_width, 20, Qt.AlignCenter, product)
                 
@@ -138,7 +137,7 @@ class HorizontalBarWidget(QWidget):
             
             for name, value, color in self.products:
                 painter.setPen(QColor("#6b7280"))
-                font = QFont("Segoe UI", 11)
+                font = QFont("inter", 11)
                 painter.setFont(font)
                 painter.drawText(10, y_pos, 100, bar_height, Qt.AlignVCenter, name)
                 
@@ -195,7 +194,7 @@ class LineChartWidget(QWidget):
                                 max_y, QColor("#6366f1"), is_primary=False)
             
             painter.setPen(QColor("#6b7280"))
-            font = QFont("Segoe UI", 9)
+            font = QFont("inter", 9)
             painter.setFont(font)
             for i, month in enumerate(self.months):
                 x = x_start + (i * width / (len(self.months) - 1))
@@ -237,7 +236,7 @@ class LineChartWidget(QWidget):
                         painter.setBrush(QBrush(color))
                         painter.drawRoundedRect(label_bg, 4, 4)
                         painter.setPen(QColor("white"))
-                        font = QFont("Segoe UI", 10, QFont.Bold)
+                        font = QFont("inter", 10, QFont.Bold)
                         painter.setFont(font)
                         painter.drawText(label_bg, Qt.AlignCenter, "₹55,567")
                         painter.setPen(QPen(color, 2, line_style))
@@ -288,13 +287,13 @@ class DualBarChartWidget(QWidget):
                 painter.fillRect(int(x + bar_width + 5), int(y_start + height - h2), bar_width, int(h2), QColor("#c084fc"))
                 
                 painter.setPen(QColor("#6b7280"))
-                font = QFont("Segoe UI", 10)
+                font = QFont("inter", 10)
                 painter.setFont(font)
                 painter.drawText(int(x), height + y_start + 10, bar_width * 2, 20, Qt.AlignCenter, month)
                 
                 if i == self.highlight_index:
                     painter.setPen(QColor("#6366f1"))
-                    font = QFont("Segoe UI", 9, QFont.Bold)
+                    font = QFont("inter", 9, QFont.Bold)
                     painter.setFont(font)
                     painter.drawText(int(x - 5), int(y_start + height - h1 - 10), "3.1k")
                     painter.setPen(QColor("#c084fc"))

@@ -11,8 +11,10 @@ class PurchasePage(QWidget):
     def _init_ui(self):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
+        layout.setAlignment(Qt.AlignTop)
         
         card = CardWidget()
+        card.setMaximumHeight(300)
         card_layout = QVBoxLayout(card)
         card_layout.setContentsMargins(40, 40, 40, 40)
         
@@ -30,3 +32,4 @@ class PurchasePage(QWidget):
         card_layout.addStretch()
         
         layout.addWidget(card)
+        layout.addStretch()
