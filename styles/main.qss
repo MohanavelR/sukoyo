@@ -20,6 +20,7 @@ QPushButton#defaultButton {
     color: {{text_secondary}};
     font-size: 13px;
     font-weight: 500;
+    
     border: none;
 }
 
@@ -421,6 +422,10 @@ QPushButton[class="nav-button"]:pressed {
     border-radius: 8px;
     padding: 12px;
     margin: 4px;
+}
+#Sidebar[collapsed="true"] 
+{
+    text-align: center;
 }
 
 #SidebarToggleButton:hover {

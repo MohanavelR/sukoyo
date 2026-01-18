@@ -5,7 +5,7 @@ Displays overview metrics, customer insights, product performance, and financial
 
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, 
-    QPushButton, QLabel, QFrame
+    QPushButton, QLabel, QFrame, QComboBox
 )
 from PyQt5.QtCore import Qt, QRectF, QPointF
 from PyQt5.QtGui import QPainter, QPen, QColor, QFont, QPainterPath, QBrush
@@ -607,11 +607,11 @@ class DashboardPage(QWidget):
             charts_layout.setContentsMargins(0, 0, 0, 0)
             
             top_selling_widget = BarChartWidget()
-            top_chart = self.create_chart_card("Top-Selling Products", top_selling_widget)
+            top_chart = self.create_chart_card("Top-Selling Products", top_selling_widget, show_filter=True)
             charts_layout.addWidget(top_chart, 1)
             
             least_selling_widget = HorizontalBarWidget()
-            least_chart = self.create_chart_card("Least-Selling Products", least_selling_widget)
+            least_chart = self.create_chart_card("Least-Selling Products", least_selling_widget, show_filter=True)
             charts_layout.addWidget(least_chart, 1)
             
             section_layout.addWidget(charts_container)
@@ -636,10 +636,10 @@ class DashboardPage(QWidget):
             charts_layout = QHBoxLayout()
             charts_layout.setSpacing(20)
             
-            revenue_chart = self.create_chart_card("Gross Revenue", LineChartWidget(show_series2=True))
+            revenue_chart = self.create_chart_card("Gross Revenue", LineChartWidget(show_series2=True), show_filter=True)
             charts_layout.addWidget(revenue_chart)
             
-            loyalty_chart = self.create_chart_card("Loyalty Discount", DualBarChartWidget())
+            loyalty_chart = self.create_chart_card("Loyalty Discount", DualBarChartWidget(), show_filter=True)
             charts_layout.addWidget(loyalty_chart)
             
             section_layout.addLayout(charts_layout)
@@ -648,8 +648,8 @@ class DashboardPage(QWidget):
         except Exception as e:
             print(f"Error creating financial section: {e}")
     
-    def create_chart_card(self, title, chart_widget):
-        """Create a chart card with title and chart"""
+    def create_chart_card(self, title, chart_widget, show_filter=False):
+        """Create a chart card with title and optional filter"""
         try:
             card = QFrame()
             card.setObjectName("ChartCard")
@@ -659,10 +659,31 @@ class DashboardPage(QWidget):
             layout.setSpacing(16)
             layout.setContentsMargins(20, 20, 20, 20)
             
+            # Header Layout
+            header_layout = QHBoxLayout()
+            header_layout.setContentsMargins(0, 0, 0, 0)
+            
             # Title
             title_label = QLabel(title)
             title_label.setObjectName("ChartTitle")
-            layout.addWidget(title_label)
+            header_layout.addWidget(title_label)
+            
+            header_layout.addStretch()
+            
+            # Optional Month Filter
+            if show_filter:
+                filter_combo = QComboBox()
+                filter_combo.setObjectName("ChartFilter")
+                filter_combo.addItems([
+                    "January", "February", "March", "April", "May", "June", 
+                    "July", "August", "September", "October", "November", "December"
+                ])
+                filter_combo.setCursor(Qt.PointingHandCursor)
+                # Set current month (example: January)
+                filter_combo.setCurrentIndex(0)
+                header_layout.addWidget(filter_combo)
+            
+            layout.addLayout(header_layout)
             
             # Chart widget
             layout.addWidget(chart_widget, 1)

@@ -21,8 +21,8 @@ class ThemeManager(QObject):
         self._system = SystemTheme()
         self._theme_config = Theme()
         # self._theme_name = self._system.get_theme()
-        self._theme_name = "light"
-        # self._theme_name = "purple"
+        # self._theme_name = "light"
+        self._theme_name = "purple"
         # self._theme_name = "dark"
         self._theme_data = self._theme_config.get_theme(self._theme_name)
         self.apply_theme()
