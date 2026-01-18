@@ -10,6 +10,7 @@ NAV_ITEMS = [
     ("assets/icons/purchase.png", "Purchase", "purchase"),
     ("assets/icons/accounts.png", "Accounts", "accounts"),
     ("assets/icons/pos.png", "POS Billing", "pos"),
+    ("assets/icons/report.png", "Report", "report"),
     ("assets/icons/attendance.png", "Attendance", "attendance"),
     ("assets/icons/settings.png", "Settings", "settings"),
 ]

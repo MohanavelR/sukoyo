@@ -23,8 +23,11 @@ class Theme:
         "active_bg_secondary": "#3f3f46",
         "active_bg_accent": "#0ea5e9",
         "active_text_primary": "#ffffff",
-        "active_text_secondary": "#e4e4e7",
         "active_text_accent": "#ffffff",
+        "pos_primary": "#EAB308",
+        "pos_primary_text": "#000000",
+        "pos_secondary": "#1E293B",
+        "pos_secondary_text": "#ffffff",
     }
     
     # Purple Theme (User Specified)
@@ -49,8 +52,11 @@ class Theme:
         "active_bg_secondary": "#1a1627",
         "active_bg_accent": "#1e1828",
         "active_text_primary": "#dbeafe",
-        "active_text_secondary": "#cbd5e1",
         "active_text_accent": "#f8fafc",
+        "pos_primary": "#EAB308",
+        "pos_primary_text": "#000000",
+        "pos_secondary": "#2d2440",
+        "pos_secondary_text": "#ffffff",
     }
     
     # Light Theme (User Specified)
@@ -75,8 +81,11 @@ class Theme:
         "active_bg_secondary": "#e2e4e7",
         "active_bg_accent": "#e5e5e5",
         "active_text_primary": "#000000",
-        "active_text_secondary": "#1e293b",
         "active_text_accent": "#0a0f1f",
+        "pos_primary": "#EAB308",
+        "pos_primary_text": "#000000",
+        "pos_secondary": "#1E293B",
+        "pos_secondary_text": "#ffffff",
     }
 
     def get_theme(self, theme_name):

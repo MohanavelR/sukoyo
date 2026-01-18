@@ -20,7 +20,6 @@ QPushButton#defaultButton {
     color: {{text_secondary}};
     font-size: 13px;
     font-weight: 500;
-    
     border: none;
 }
 
@@ -1173,3 +1172,335 @@ QComboBox#DashboardMonthDropdown QAbstractItemView {
     color: {{text_primary}};
     outline: none;
 }
+
+/* ========================================
+   REPORT PAGE STYLES
+   ======================================== */
+
+/* Report Page Container */
+#ReportPage {
+    background: transparent;
+}
+
+/* Report Container - Main Grid */
+#ReportContainer {
+    background: {{bg_secondary}};
+    border: 1px solid {{border_primary}};
+    border-radius: 12px;
+}
+
+/* Report Section - Individual Category */
+#ReportSection {
+    background: transparent;
+    border: none;
+}
+
+/* Section Header Frame */
+QFrame[class="section-header"] {
+    background-color: {{bg_accent}};
+    border-bottom: 1px solid {{border_primary}};
+    padding: 15px;
+}
+
+/* Section Title Label */
+QLabel[class="section-title"] {
+    font-size: 16px;
+    font-weight: bold;
+    color: {{text_primary}};
+    background: transparent;
+    border: none;
+}
+
+/* Section Icon Label */
+QLabel[class="section-icon"] {
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    color: {{text_primary}};
+}
+
+/* Report Link Buttons */
+QPushButton[class="report-link"] {
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    color: {{text_secondary}};
+    font-size: 14px;
+    padding: 10px 15px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+}
+
+QPushButton[class="report-link"]:hover {
+    color: {{text_accent}};
+    background-color: {{hover_bg_secondary}};
+}
+
+QPushButton[class="report-link"]:pressed {
+    background-color: {{active_bg_secondary}};
+    color: {{active_text_primary}};
+}
+
+/* Border Properties for Grid Layout */
+#ReportSection[border-right="true"] {
+    border-right: 1px solid {{border_primary}};
+}
+
+#ReportSection[border-bottom="true"] {
+    border-bottom: 1px solid {{border_primary}};
+}
+
+/* ========================================
+   POS BILLING PAGE STYLES
+   ======================================== */
+
+#POSPage {
+    background-color: {{bg_secondary}};
+}
+
+/* POS Header */
+#POSHeader {
+    background-color: {{bg_primary}};
+    border-bottom: 1px solid {{border_primary}};
+    min-height: 50px;
+}
+
+#POSHeader QPushButton#defaultButton#POSTab {
+    padding: 10px 25px;
+    border: none;
+    border-right: 1px solid {{border_primary}};
+    background: transparent;
+    color: {{text_secondary}};
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#POSHeader QPushButton#defaultButton#POSTab[active="true"] {
+    background-color: {{bg_secondary}};
+    color: {{text_primary}};
+    font-weight: 600;
+}
+
+#POSHeader QPushButton#defaultButton#POSCloseTab {
+    background: transparent;
+    border: none;
+    border-right: 1px solid {{border_primary}};
+    color: {{text_disabled}};
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+#POSHeader QPushButton#defaultButton#POSCloseTab:hover {
+    color: #EF4444;
+}
+
+#POSHeader QPushButton#primaryButton#POSActionBtn_Yellow {
+    background-color: {{pos_primary}};
+    color: {{pos_primary_text}};
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+#POSHeader QPushButton#secondaryButton#POSActionBtn_Dark {
+    background-color: {{pos_secondary}};
+    color: {{pos_secondary_text}};
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 13px;
+}
+
+/* POS Search Area */
+#POSSearchFrame {
+    background-color: {{bg_primary}};
+    border: 1px solid {{border_primary}};
+    border-radius: 6px;
+    padding: 2px 10px;
+}
+
+#POSSearchInput {
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    background: transparent;
+    color: {{text_primary}};
+}
+
+/* POS Table */
+#POSTable {
+    border: 1px solid {{border_primary}};
+    gridline-color: {{border_secondary}};
+    background-color: {{bg_primary}};
+    selection-background-color: {{hover_bg_secondary}};
+    alternate-background-color: {{bg_secondary}};
+}
+
+#POSTable QHeaderView::section {
+    background-color: {{bg_secondary}};
+    padding: 12px 8px;
+    border: none;
+    border-bottom: 2px solid {{border_primary}};
+    border-right: 1px solid {{border_secondary}};
+    color: {{text_secondary}};
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+#POSTable QPushButton#defaultButton#POSTableDeleteBtn {
+    background-color: transparent;
+    border: none;
+    color: #EF4444;
+    font-size: 16px;
+    padding: 0;
+}
+
+#POSTable QPushButton#defaultButton#POSTableDeleteBtn:hover {
+    color: #B91C1C;
+}
+
+/* POS Sidebar */
+#POSSidebar {
+    background-color: {{bg_primary}};
+    border-left: 1px solid {{border_primary}};
+    min-width: 400px;
+}
+
+#POSSidebarHeading {
+    font-size: 13px;
+    font-weight: 700;
+    color: {{text_primary}};
+    background-color: {{bg_secondary}};
+    padding: 10px 20px;
+    border-top: 1px solid {{border_primary}};
+    border-bottom: 1px solid {{border_primary}};
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#POSSidebar QPushButton#secondaryButton#POSSidebarBtn {
+    background-color: {{bg_secondary}};
+    color: {{text_primary}};
+    border: 1px solid {{border_primary}};
+    border-radius: 4px;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+#POSSidebar QPushButton#secondaryButton#POSSidebarBtn:hover {
+    background-color: {{hover_bg_secondary}};
+}
+
+#POSCustomerCard {
+    border: 1px dashed {{border_primary}};
+    border-radius: 8px;
+    padding: 25px;
+    margin: 10px 20px;
+}
+
+#POSSidebar QPushButton#defaultButton#POSAddCustomerBtn {
+    background: transparent;
+    border: none;
+    color: #4F46E5;
+    font-weight: bold;
+}
+
+#POSBillLabel {
+    color: {{text_secondary}};
+    font-size: 14px;
+}
+
+#POSBillValue {
+    font-weight: 700;
+    font-size: 14px;
+    color: {{text_primary}};
+}
+
+#POSTotalAmountFrame {
+    border-top: 1px solid {{border_primary}};
+    border-bottom: 1px solid {{border_primary}};
+    padding: 15px 20px;
+    margin-top: 10px;
+}
+
+#POSTotalAmountLabel {
+    font-size: 16px;
+    font-weight: 700;
+    color: {{text_primary}};
+}
+
+#POSTotalAmountValue {
+    font-size: 20px;
+    font-weight: 800;
+    color: {{text_primary}};
+}
+
+#POSReceivedFrame {
+    padding: 10px 20px;
+}
+
+#POSReceivedInput, #POSPaymentMode {
+    background-color: {{bg_secondary}};
+    border: 1px solid {{border_primary}};
+    color: {{text_primary}};
+}
+
+#POSChangeReturnFrame {
+    padding: 10px 20px;
+}
+
+#POSChangeLabel {
+    color: {{text_secondary}};
+    font-weight: 600;
+}
+
+#POSChangeValue {
+    font-weight: 800;
+    font-size: 16px;
+    color: {{text_primary}};
+}
+
+#POSSidebar QPushButton#primaryButton#POSBottomActionBtn {
+    background-color: {{pos_secondary}};
+    color: {{pos_secondary_text}};
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+}
+
+#POSSidebar QPushButton#primaryButton#POSBottomActionBtn:hover {
+    background-color: {{active_bg_primary}};
+}
+
+#POSSidebar QPushButton#secondaryButton#POSBottomActionBtn {
+    background-color: {{pos_secondary}};
+    color: {{pos_secondary_text}};
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+}
+
+#POSSidebar QPushButton#secondaryButton#POSBottomActionBtn:hover {
+    background-color: {{active_bg_primary}};
+}
+
+#POSPage QPushButton#secondaryButton#POSActionBtn_Dark {
+    background-color: {{pos_secondary}};
+    color: {{pos_secondary_text}};
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 13px;
+}
+

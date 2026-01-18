@@ -19,6 +19,7 @@ from pages.accounts import AccountsPage
 from pages.pos import POSPage
 from pages.attendance import AttendancePage
 from pages.settings import SettingsPage
+from pages.report import ReportPage
 
 from config.settings import Settings
 from config.theme_manager import ThemeManager
@@ -106,6 +107,7 @@ class MainWindow(QMainWindow):
         self.purchase_page = PurchasePage()
         self.accounts_page = AccountsPage()
         self.pos_page = POSPage()
+        self.report_page = ReportPage()
         self.attendance_page = AttendancePage()
         self.settings_page = SettingsPage()
         
@@ -121,6 +123,7 @@ class MainWindow(QMainWindow):
         self.pages.addWidget(self.purchase_page)
         self.pages.addWidget(self.accounts_page)
         self.pages.addWidget(self.pos_page)
+        self.pages.addWidget(self.report_page)
         self.pages.addWidget(self.attendance_page)
         self.pages.addWidget(self.settings_page)
         # Store page mapping for easy access
@@ -136,6 +139,7 @@ class MainWindow(QMainWindow):
             "purchase": self.purchase_page,
             "accounts": self.accounts_page,
             "pos": self.pos_page,
+            "report": self.report_page,
             "attendance": self.attendance_page,
             "settings": self.settings_page,
         }
@@ -163,6 +167,7 @@ class MainWindow(QMainWindow):
             "purchase": self.purchase_page,
             "accounts": self.accounts_page,
             "pos": self.pos_page,
+            "report": self.report_page,
             "attendance": self.attendance_page,
             "settings": self.settings_page,
         }
@@ -177,7 +182,16 @@ class MainWindow(QMainWindow):
         if page_id in self.page_widgets:
             self.pages.setCurrentWidget(self.page_widgets[page_id])
             
-            # Adjust scroll area policy based on page
+            # Adjust scroll area policy and margins based on page
+            if page_id == "pos":
+                self.header.hide()
+                self.content_layout.setContentsMargins(0, 0, 0, 0)
+                self.content_layout.setSpacing(0)
+            else:
+                self.header.show()
+                self.content_layout.setContentsMargins(32, 28, 32, 32)
+                self.content_layout.setSpacing(24)
+
             if page_id == "inventory":
                 # Inventory page has its own internal scrolling
                 self.content_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
