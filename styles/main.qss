@@ -140,6 +140,15 @@ QPushButton#secondaryButton[active="true"] {
     background: transparent;
 }
 
+#SidebarScrollContent{
+    background:transparent;
+}
+
+#SidebarScrollArea {
+    background: transparent;
+    border: none;
+}
+
 #SidebarToggleButton {
     background: transparent;
     border: none;
@@ -292,35 +301,59 @@ QPushButton[class="action-button"]:pressed {
    GLOBAL SCROLLBARS
    ======================================== */
 QScrollBar:vertical {
-    background: {{bg_secondary}};
+    background-color: {{bg_secondary}};
     width: 12px;
     border-radius: 6px;
+    margin: 0;
 }
 
 QScrollBar::handle:vertical {
-    background: {{border_secondary}};
+    background-color: {{bg_accent}};
     border-radius: 6px;
-    min-height: 20px;
+    min-height: 30px;
+    margin: 2px;
 }
 
 QScrollBar::handle:vertical:hover {
-    background: {{text_accent}};
+    background-color: {{hover_bg_secondary}};
+}
+
+QScrollBar::add-line:vertical, 
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical, 
+QScrollBar::sub-page:vertical {
+    background: none;
 }
 
 QScrollBar:horizontal {
-    background: {{bg_secondary}};
+    background-color: {{bg_secondary}};
     height: 12px;
     border-radius: 6px;
+    margin: 0;
 }
 
 QScrollBar::handle:horizontal {
-    background: {{border_secondary}};
+    background-color: {{bg_accent}};
     border-radius: 6px;
-    min-width: 20px;
+    min-width: 30px;
+    margin: 2px;
 }
 
 QScrollBar::handle:horizontal:hover {
-    background: {{text_accent}};
+    background-color: {{hover_bg_secondary}};
+}
+
+QScrollBar::add-line:horizontal, 
+QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+QScrollBar::add-page:horizontal, 
+QScrollBar::sub-page:horizontal {
+    background: none;
 }
 
 /* ========================================
@@ -448,11 +481,6 @@ QPushButton[class="nav-button"]:pressed {
     background: transparent;
 }
 
-#ContentScrollArea{
-    border: none;
-    background: {{bg_primary}};
-
-}
 
 /* ========================================
    HEADER STYLES
@@ -718,7 +746,6 @@ QPushButton[class="tab-button"]:checked:hover {
 #ChartPlaceholder {
     font-size: 48px;
     color: {{text_disabled}};
-    background: {{bg_accent}};
     border-radius: 8px;
     padding: 40px;
 }
@@ -801,7 +828,6 @@ QListWidget#ItemList::item:selected QWidget#ItemListItem {
     background-color: {{active_bg_primary}};
     border: 1px solid {{border_accent}};
     border-left: 4px solid {{border_accent}};
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 QLabel#ItemTitle {
@@ -869,25 +895,6 @@ QPushButton#BackBtn:hover {
 QWidget#ActionsContainer {
     background-color: transparent;
 }
-/* QPushButton#secondaryButton{
- background-color: {{bg_accent}};
-    border: 1px solid {{border_primary}};
-    border-radius: 10px;
-    padding: 10px 18px;
-    color: {{text_primary}};
-    font-weight: 500;
-    font-size: 13px;
-} */
-/* Action Buttons
-QPushButton#ActionBtn {
-    background-color: {{bg_accent}};
-    border: 1px solid {{border_primary}};
-    border-radius: 10px;
-    padding: 10px 18px;
-    color: {{text_primary}};
-    font-weight: 500;
-    font-size: 13px;
-} */
 
 QPushButton#ActionBtn:hover {
     background-color: {{hover_bg_secondary}};
@@ -1091,58 +1098,78 @@ QScrollArea#TableScrollArea {
     background-color: transparent;
 }
 
-QScrollBar:vertical {
+
+/* ========================================
+   THEME DROPDOWN
+   ======================================== */
+QComboBox#ThemeDropdown {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid {{border_primary}};
     background-color: {{bg_secondary}};
-    width: 12px;
-    border-radius: 6px;
-    margin: 0;
+    color: {{text_primary}};
+    font-size: 14px;
+    min-width: 200px;
 }
 
-QScrollBar::handle:vertical {
-    background-color: {{bg_accent}};
-    border-radius: 6px;
-    min-height: 30px;
-    margin: 2px;
+QComboBox#ThemeDropdown::drop-down {
+    border: none;
+    width: 30px;
 }
 
-QScrollBar::handle:vertical:hover {
-    background-color: {{hover_bg_secondary}};
+QComboBox#ThemeDropdown::down-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid {{text_secondary}};
+    margin-right: 10px;
 }
 
-QScrollBar::add-line:vertical, 
-QScrollBar::sub-line:vertical {
-    height: 0px;
-}
-
-QScrollBar::add-page:vertical, 
-QScrollBar::sub-page:vertical {
-    background: none;
-}
-
-QScrollBar:horizontal {
+QComboBox#ThemeDropdown QAbstractItemView {
     background-color: {{bg_secondary}};
-    height: 12px;
+    border: 1px solid {{border_primary}};
+    selection-background-color: {{hover_bg_primary}};
+    selection-color: {{text_primary}};
+    color: {{text_primary}};
+    outline: none;
+}
+
+
+/* ========================================
+   DASHBOARD MONTH DROPDOWN
+   ======================================== */
+QComboBox#DashboardMonthDropdown {
+    padding: 6px 12px;
     border-radius: 6px;
-    margin: 0;
+    border: 1px solid {{border_primary}};
+    background-color: {{bg_secondary}};
+    color: {{text_primary}};
+    font-size: 13px;
+    min-width: 120px;
 }
 
-QScrollBar::handle:horizontal {
-    background-color: {{bg_accent}};
-    border-radius: 6px;
-    min-width: 30px;
-    margin: 2px;
+QComboBox#DashboardMonthDropdown::drop-down {
+    border: none;
+    width: 24px;
 }
 
-QScrollBar::handle:horizontal:hover {
-    background-color: {{hover_bg_secondary}};
+QComboBox#DashboardMonthDropdown::down-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid {{text_secondary}};
+    margin-right: 8px;
 }
 
-QScrollBar::add-line:horizontal, 
-QScrollBar::sub-line:horizontal {
-    width: 0px;
-}
-
-QScrollBar::add-page:horizontal, 
-QScrollBar::sub-page:horizontal {
-    background: none;
+QComboBox#DashboardMonthDropdown QAbstractItemView {
+    background-color: {{bg_secondary}};
+    border: 1px solid {{border_primary}};
+    selection-background-color: {{hover_bg_primary}};
+    selection-color: {{text_primary}};
+    color: {{text_primary}};
+    outline: none;
 }

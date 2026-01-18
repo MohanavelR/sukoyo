@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import (
     QWidget, QFrame, QVBoxLayout,
-    QPushButton, QLabel
+    QPushButton, QLabel, QScrollArea
 )
 from PyQt5.QtCore import Qt, pyqtSignal, QSize
 from PyQt5.QtGui import QIcon, QFont
@@ -60,6 +60,26 @@ class Sidebar(QWidget):
             self.sidebar_label.setAlignment(Qt.AlignCenter)
             layout.addWidget(self.sidebar_label)
 
+        # Scroll Area for Navigation Items
+        scroll_area = QScrollArea()
+        scroll_area.setObjectName("SidebarScrollArea")
+        scroll_area.setWidgetResizable(True)
+        scroll_area.setFrameShape(QFrame.NoFrame)
+        scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        
+        # Hide vertical scrollbar when collapsed for cleaner look
+        if self.is_menu_open:
+            scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        else:
+            scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        
+        # Container for buttons inside scroll area
+        scroll_content = QWidget()
+        scroll_content.setObjectName("SidebarScrollContent")
+        scroll_layout = QVBoxLayout(scroll_content)
+        scroll_layout.setContentsMargins(0, 0, 0, 0)
+        scroll_layout.setSpacing(4)
+
         # Navigation buttons
         for icon_filename, text, page_id in NAV_ITEMS:
             btn = QPushButton()
@@ -88,10 +108,16 @@ class Sidebar(QWidget):
             # Connect navigation
             btn.clicked.connect(lambda checked, p=page_id: self.on_navigate(p))
             
-            layout.addWidget(btn)
+            scroll_layout.addWidget(btn)
             self.nav_buttons.append(btn)
 
-        layout.addStretch()
+        scroll_layout.addStretch()
+        
+        # Set widget for scroll area
+        scroll_area.setWidget(scroll_content)
+        
+        # Add scroll area to main layout
+        layout.addWidget(scroll_area)
         
         # Set the layout on self, not sidebar
         main_layout = QVBoxLayout(self)

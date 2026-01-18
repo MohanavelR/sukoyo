@@ -12,6 +12,7 @@ from PyQt5.QtGui import QPainter, QPen, QColor, QFont, QPainterPath, QBrush
 
 from config.theme_manager import ThemeManager
 from components.button import PrimaryButton
+from components.combo_box import Dropdown
 
 class CircularProgress(QWidget):
     """Circular progress indicator with percentage display"""
@@ -594,8 +595,8 @@ class DashboardPage(QWidget):
             section = QWidget()
             section.setObjectName("ProductSection")
             section_layout = QVBoxLayout(section)
-            section_layout.setSpacing(16)
-            section_layout.setContentsMargins(0, 0, 0, 0)
+            section_layout.setSpacing(30)
+            section_layout.setContentsMargins(10, 10, 10, 10)
             
             title = QLabel("Product Performance")
             title.setObjectName("SectionTitle")
@@ -672,14 +673,13 @@ class DashboardPage(QWidget):
             
             # Optional Month Filter
             if show_filter:
-                filter_combo = QComboBox()
-                filter_combo.setObjectName("ChartFilter")
-                filter_combo.addItems([
+                filter_combo = Dropdown(items=[
                     "January", "February", "March", "April", "May", "June", 
                     "July", "August", "September", "October", "November", "December"
                 ])
+                
                 filter_combo.setCursor(Qt.PointingHandCursor)
-                # Set current month (example: January)
+                
                 filter_combo.setCurrentIndex(0)
                 header_layout.addWidget(filter_combo)
             

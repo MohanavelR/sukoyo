@@ -28,7 +28,7 @@ class ThemeManager(QObject):
         self.apply_theme()
 
     def load_qss(self):
-        if self._qss is None:
+        if True: # Always reload for dev
             qss_path = os.path.join(os.path.dirname(__file__), "../styles/main.qss")
             qss_path = os.path.abspath(qss_path)
             with open(qss_path, "r") as f:
