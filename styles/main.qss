@@ -12,7 +12,109 @@ QMainWindow {
 #CentralWidget {
     background: {{bg_primary}};
 }
+/* ---------- */
+QPushButton#defaultButton {
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: {{text_secondary}};
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+}
 
+/* Hover */
+QPushButton#defaultButton:hover {
+    background-color: {{hover_bg_secondary}};
+    color: {{text_primary}};
+}
+
+/* Pressed */
+QPushButton#defaultButton:pressed {
+    background-color: {{active_bg_secondary}};
+}
+
+/* Disabled */
+QPushButton#defaultButton:disabled {
+    color: {{text_disabled}};
+    background-color: transparent;
+}
+
+/* Focus */
+QPushButton#defaultButton:focus {
+    outline: none;
+    border: 1px solid {{border_accent}};
+}
+QPushButton#primaryButton {
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #2563EB;          /* Blue 600 */
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+}
+
+/* Hover */
+QPushButton#primaryButton:hover {
+    background-color: #1D4ED8;          /* Blue 700 */
+}
+
+/* Pressed */
+QPushButton#primaryButton:pressed {
+    background-color: #1E40AF;          /* Blue 800 */
+}
+
+/* Checked (toggle buttons) */
+QPushButton#primaryButton:checked {
+    background-color: #1E40AF;
+}
+
+/* Disabled */
+QPushButton#primaryButton:disabled {
+    background-color: #93C5FD;          /* Blue 300 */
+    color: #E5E7EB;                     /* Gray 200 */
+}
+
+/* Focus */
+QPushButton#primaryButton:focus {
+    outline: none;
+    border: 2px solid #60A5FA;          /* Blue 400 */
+}
+
+/* Custom Active State */
+QPushButton#primaryButton[active="true"] {
+    background-color: #1E40AF;
+}
+
+
+
+/* =========================
+   SECONDARY BUTTON
+   ========================= */
+QPushButton#secondaryButton {
+    background-color: {{bg_secondary}};
+    border: 1px solid {{border_primary}};
+    color: {{text_secondary}};
+}
+
+/* Hover */
+QPushButton#secondaryButton:hover {
+    background-color: {{hover_bg_secondary}};
+    color: {{hover_text_primary}};
+}
+
+/* Pressed */
+QPushButton#secondaryButton:pressed {
+    background-color: {{active_bg_secondary}};
+}
+
+/* Active (custom property) */
+QPushButton#secondaryButton[active="true"] {
+    border-color: {{border_accent}};
+}
+
+/* ---------- */
 /* ========================================
    SIDEBAR STYLES
    ======================================== */
@@ -635,7 +737,7 @@ QLabel#PanelHeader {
 }
 
 /* Search Input */
-QLineEdit#SearchInput {
+QLineEdit#primaryInput {
     border: 1px solid {{border_primary}};
     border-radius: 10px;
     padding: 12px 16px;
@@ -644,36 +746,15 @@ QLineEdit#SearchInput {
     font-size: 14px;
 }
 
-QLineEdit#SearchInput:focus {
+QLineEdit#primaryInput:focus {
     border: 1px solid {{border_accent}};
     background-color: {{bg_primary}};
 }
 
-QLineEdit#SearchInput::placeholder {
+QLineEdit#primaryInput::placeholder {
     color: {{text_disabled}};
 }
 
-/* Filter Buttons */
-QPushButton#FilterBtn {
-    background-color: {{bg_accent}};
-    border: 1px solid {{border_primary}};
-    border-radius: 8px;
-    padding: 8px 16px;
-    color: {{text_secondary}};
-    font-weight: 500;
-    font-size: 13px;
-}
-
-QPushButton#FilterBtn:hover {
-    background-color: {{hover_bg_secondary}};
-    color: {{hover_text_primary}};
-}
-
-QPushButton#FilterBtn[active="true"] {
-    background-color: {{active_bg_secondary}};
-    color: {{active_text_accent}};
-    border-color: {{border_accent}};
-}
 
 /* List Widget */
 QListWidget#ItemList {
@@ -783,8 +864,16 @@ QPushButton#BackBtn:hover {
 QWidget#ActionsContainer {
     background-color: transparent;
 }
-
-/* Action Buttons */
+/* QPushButton#secondaryButton{
+ background-color: {{bg_accent}};
+    border: 1px solid {{border_primary}};
+    border-radius: 10px;
+    padding: 10px 18px;
+    color: {{text_primary}};
+    font-weight: 500;
+    font-size: 13px;
+} */
+/* Action Buttons
 QPushButton#ActionBtn {
     background-color: {{bg_accent}};
     border: 1px solid {{border_primary}};
@@ -793,7 +882,7 @@ QPushButton#ActionBtn {
     color: {{text_primary}};
     font-weight: 500;
     font-size: 13px;
-}
+} */
 
 QPushButton#ActionBtn:hover {
     background-color: {{hover_bg_secondary}};
@@ -849,7 +938,7 @@ QPushButton#TabBtn:hover {
 }
 
 QPushButton#TabBtn[active="true"] {
-    color: {{active_text_accent}};
+    color: {{text_accent}};
     border-bottom: 3px solid {{border_accent}};
 }
 

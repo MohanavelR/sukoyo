@@ -11,7 +11,7 @@ from PyQt5.QtCore import Qt, QRectF, QPointF
 from PyQt5.QtGui import QPainter, QPen, QColor, QFont, QPainterPath, QBrush
 
 from config.theme_manager import ThemeManager
-
+from components.button import PrimaryButton
 
 class CircularProgress(QWidget):
     """Circular progress indicator with percentage display"""
@@ -349,9 +349,9 @@ class DashboardPage(QWidget):
             self.tab_buttons = []
             
             for tab_name in tabs:
-                btn = QPushButton(tab_name)
-                btn.setObjectName(f"TabButton_{tab_name.replace(' ', '')}")
-                btn.setProperty("class", "tab-button")
+                btn =PrimaryButton (tab_name)
+                # btn.setObjectName(f"TabButton_{tab_name.replace(' ', '')}")
+                # btn.setProperty("class", "tab-button")
                 btn.setCheckable(True)
                 btn.setChecked(tab_name == self.current_tab)
                 btn.setCursor(Qt.PointingHandCursor)

@@ -6,7 +6,8 @@ Clean and modular structure for easy understanding
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, QSize, pyqtSignal
 from PyQt5.QtGui import QIcon
-
+from components.button import PrimaryButton, SecondaryButton,DefaultButton
+from components.Input import Input
 # ============================================================================
 # CONSTANTS AND CONFIGURATION
 # ============================================================================
@@ -40,7 +41,7 @@ class ItemListWidget(QWidget):
     def _setup_ui(self):
         """Create all UI elements"""
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(16, 20, 16, 20)
+        layout.setContentsMargins(6, 6, 6, 6)
         layout.setSpacing(16)
         
         # Title
@@ -66,8 +67,7 @@ class ItemListWidget(QWidget):
     
     def _add_search_bar(self, layout):
         """Add search input field"""
-        self.search_bar = QLineEdit()
-        self.search_bar.setObjectName("SearchInput")
+        self.search_bar = Input()
         self.search_bar.setPlaceholderText("Search items...")
         self.search_bar.textChanged.connect(self._on_search)
         layout.addWidget(self.search_bar)
@@ -78,15 +78,15 @@ class ItemListWidget(QWidget):
         filter_row.setSpacing(6)
         
         # All button (default active)
-        self.btn_all = QPushButton("All")
-        self.btn_all.setObjectName("FilterBtn")
+        self.btn_all = SecondaryButton("All")
+        
         self.btn_all.setProperty("active", "true")
         self.btn_all.setCheckable(True)
         self.btn_all.setChecked(True)
         
         # Low Stock button
-        self.btn_low_stock = QPushButton("Low Stock")
-        self.btn_low_stock.setObjectName("FilterBtn")
+        self.btn_low_stock = SecondaryButton("Low Stock")
+        
         self.btn_low_stock.setCheckable(True)
         
         filter_row.addWidget(self.btn_all)
@@ -284,8 +284,8 @@ class DetailPanel(QWidget):
     
     def _create_action_btn(self, text, action_name):
         """Helper to create an action button"""
-        btn = QPushButton(text)
-        btn.setObjectName("ActionBtn")
+        btn = SecondaryButton(text)
+        # btn.setObjectName("ActionBtn")
         btn.setCursor(Qt.PointingHandCursor)
         btn.clicked.connect(lambda: print(f"Action: {action_name}"))
         return btn
@@ -638,49 +638,52 @@ class BatchPage(QWidget):
         scroll.setObjectName("TableScrollArea")
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.NoFrame)
-        
+
         table = QTableWidget(3, 6)
         table.setObjectName("DataTable")
         table.setHorizontalHeaderLabels(
             ["#", "Batch No", "Quantity", "MFG Date", "EXP Date", "Action"]
         )
-        
+
         # Configure
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         table.setColumnWidth(0, 50)
+        table.setColumnWidth(5, 120)  # Set minimum width for Action column
         table.verticalHeader().setVisible(False)
         table.verticalHeader().setDefaultSectionSize(48)
         table.setShowGrid(True)
-        
+
         # Add data
         data = [
             ("01", "B001-2025", "250", "01/01/25", "01/01/27"),
             ("02", "B002-2025", "200", "15/01/25", "15/01/27"),
             ("03", "B003-2025", "187", "28/01/25", "28/01/27")
         ]
-        
+
         for r, row_data in enumerate(data):
             for c, text in enumerate(row_data):
                 item = QTableWidgetItem(text)
                 align = Qt.AlignCenter if c == 0 else Qt.AlignLeft
                 item.setTextAlignment(align | Qt.AlignVCenter)
                 table.setItem(r, c, item)
-            
+
             # Add action button
             btn_widget = QWidget()
             btn_widget.setObjectName("TableActionWidget")
             btn_layout = QHBoxLayout(btn_widget)
-            btn_layout.setContentsMargins(8, 4, 8, 4)
-            
-            btn = QPushButton("🖨 Print")
-            btn.setObjectName("TableActionBtn")
-            btn.setMinimumHeight(32)
+            btn_layout.setContentsMargins(0, 0, 0, 0)  # Remove margins
+            btn_layout.setSpacing(0)
+
+            btn = DefaultButton("🖨 Print")
+            btn.setMinimumHeight(30)
+            btn.setMinimumWidth(90)
             btn.clicked.connect(lambda: print("Print clicked"))
+            btn_layout.addStretch()
             btn_layout.addWidget(btn)
             btn_layout.addStretch()
-            
+
             table.setCellWidget(r, 5, btn_widget)
-        
+
         scroll.setWidget(table)
         return scroll
 
