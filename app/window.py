@@ -34,6 +34,10 @@ class MainWindow(QMainWindow):
         self.setGeometry(Settings.X, Settings.Y, Settings.WIDTH, Settings.HEIGHT)
         self.setObjectName("MainWindow")
         
+        # Initialize Data Manager
+        from data.data_manager import DataManager
+        self.data_manager = DataManager()
+        
         self._init_ui()
         
         # Connect sidebar navigation
@@ -92,7 +96,7 @@ class MainWindow(QMainWindow):
         
         # Initialize pages
         self.dashboard_page = DashboardPage()
-        self.inventory_page = InventoryPage()
+        self.inventory_page = InventoryPage(self.data_manager)
         
         # Add pages to stack
         self.pages.addWidget(self.dashboard_page)
@@ -106,7 +110,7 @@ class MainWindow(QMainWindow):
         self.sales_page = SalesPage()
         self.purchase_page = PurchasePage()
         self.accounts_page = AccountsPage()
-        self.pos_page = POSPage()
+        self.pos_page = POSPage(self.data_manager)
         self.report_page = ReportPage()
         self.attendance_page = AttendancePage()
         self.settings_page = SettingsPage()

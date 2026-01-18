@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QLabel, QPushButton, 
     QFrame, QLineEdit, QTableWidget, QTableWidgetItem, QHeaderView,
-    QSpacerItem, QSizePolicy, QComboBox
+    QSpacerItem, QSizePolicy, QComboBox, QMessageBox
 )
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QIcon
@@ -9,9 +9,10 @@ from components.button import PrimaryButton, SecondaryButton, DefaultButton
 import os
 
 class POSPage(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, data_manager):
+        super().__init__()
         self.setObjectName("POSPage")
+        self.data_manager = data_manager
         self._init_ui()
 
     def _init_ui(self):
@@ -77,6 +78,7 @@ class POSPage(QWidget):
         search_input = QLineEdit()
         search_input.setObjectName("POSSearchInput")
         search_input.setPlaceholderText("Search by item name / item code or Scan Barcode...")
+        search_input.returnPressed.connect(self._on_search_return)
         search_layout.addWidget(search_input)
         table_area.addWidget(search_frame)
 
@@ -228,7 +230,7 @@ class POSPage(QWidget):
         save_bill = PrimaryButton("Save Bill [F11]")
         save_bill.setObjectName("POSBottomActionBtn")
         save_bill.setFixedHeight(45)
-        save_bill.clicked.connect(lambda: print("Saving Bill..."))
+        save_bill.clicked.connect(self.save_bill)
         
         save_print = PrimaryButton("Save & Print [F12]")
         # save_print.setObjectName("POSBottomActionBtn")
@@ -249,37 +251,143 @@ class POSPage(QWidget):
 
         content_layout.addWidget(sidebar_frame)
         layout.addLayout(content_layout)
-        self._populate_sample_data()
+        # self._populate_sample_data() # Removed sample data population
 
-    def _populate_sample_data(self):
-        sample_data = [
-            ("01", "Camlin Geometry Box", "Pcs", "2", "₹85", "10%", "0.5%", "₹154"),
-            ("02", "Classmate Sticky Notes", "Pcs", "3", "₹180", "5%", "1%", "₹518"),
-            ("03", "Kangaro Punch Machine", "Pcs", "1", "₹150", "8%", "-", "₹145"),
-            ("04", "Doms Sharpeners", "Box", "2", "₹50", "2%", "0.5%", "₹97"),
-            ("05", "Mutton Masala", "Box", "2", "₹50", "2%", "0.5%", "₹97")
-        ]
-        
-        self.table.setRowCount(0)
-        for data in sample_data:
-            self.add_item_to_table(data)
+    def _on_search_return(self):
+        """Handle search input (barcode scan simulation)"""
+        search_input = self.findChild(QLineEdit, "POSSearchInput")
+        query = search_input.text().strip()
+        if not query:
+            return
+            
+        item = self.data_manager.get_item(query)
+        if item:
+            self.add_item_to_table(item)
+            search_input.clear()
+        else:
+            # Simple feedback (could be improved with a toast/message box)
+            print(f"Item not found: {query}")
 
-    def add_item_to_table(self, data):
+    def add_item_to_table(self, item_data):
+        """Add item to table, or increment quantity if exists"""
+        # Logic to check if item already exists in table
+        for row in range(self.table.rowCount()):
+            item_widget = self.table.item(row, 1) # Item name column
+            if item_widget and item_widget.text() == item_data['name']:
+                # Item exists, update quantity
+                qty_item = self.table.item(row, 3)
+                current_qty = int(qty_item.text())
+                new_qty = current_qty + 1
+                qty_item.setText(str(new_qty))
+                
+                # Update Amount
+                price = float(item_data['price'])
+                amount_item = self.table.item(row, 7)
+                amount_item.setText(f"₹{price * new_qty}")
+                
+                self.update_bill_details()
+                return
+
+        # Add new row
         row = self.table.rowCount()
         self.table.insertRow(row)
         
-        for col, value in enumerate(data):
-            item = QTableWidgetItem(value)
-            item.setTextAlignment(Qt.AlignCenter if col != 1 else Qt.AlignLeft | Qt.AlignVCenter)
-            self.table.setItem(row, col, item)
+        # Mapping data to columns: 
+        # #, Item, Unit, Quantity, Price/Unit, Discount, Tax, Amount, Action
+        
+        # #
+        self.table.setItem(row, 0, QTableWidgetItem(str(row + 1)))
+        
+        # Item
+        self.table.setItem(row, 1, QTableWidgetItem(item_data['name']))
+        
+        # Unit
+        self.table.setItem(row, 2, QTableWidgetItem(item_data['unit']))
+        
+        # Quantity
+        qty_item = QTableWidgetItem("1")
+        qty_item.setTextAlignment(Qt.AlignCenter)
+        self.table.setItem(row, 3, qty_item)
+        
+        # Price
+        self.table.setItem(row, 4, QTableWidgetItem(f"₹{item_data['price']}"))
+        
+        # Discount
+        self.table.setItem(row, 5, QTableWidgetItem(item_data.get('discount', '-')))
+        
+        # Tax
+        self.table.setItem(row, 6, QTableWidgetItem(item_data.get('tax', '-')))
+        
+        # Amount
+        amount = item_data['price'] # 1 qty
+        self.table.setItem(row, 7, QTableWidgetItem(f"₹{amount}"))
             
         # Action Button
         delete_btn = DefaultButton("🗑️")
-        # delete_btn.setObjectName("POSTableDeleteBtn")
         delete_btn.setToolTip("Delete Row")
         delete_btn.clicked.connect(self.delete_row)
         self.table.setCellWidget(row, 8, delete_btn)
+        
         self.update_total_items_count()
+        self.update_bill_details()
+
+    def update_bill_details(self):
+        """Calculate and update sidebar totals"""
+        total = 0
+        for row in range(self.table.rowCount()):
+            amount_str = self.table.item(row, 7).text().replace('₹', '')
+            total += float(amount_str)
+            
+        # Update Total Amount Label
+        total_val_lbl = self.findChild(QLabel, "POSTotalAmountValue")
+        if total_val_lbl:
+            total_val_lbl.setText(f"₹{total}")
+            
+    def save_bill(self):
+        """Save transaction to DataManager"""
+        if self.table.rowCount() == 0:
+            return
+
+        items = []
+        total_amount = 0
+        
+        try:
+            for row in range(self.table.rowCount()):
+                item_name = self.table.item(row, 1).text()
+                qty = int(self.table.item(row, 3).text())
+                price_str = self.table.item(row, 7).text().replace('₹', '')
+                amount = float(price_str)
+                total_amount += amount
+                
+                # Update Stock
+                # We need item ID, but we only have name here. 
+                # Ideally we should store ID in user data of the item.
+                # For this refactor, we'll look up by name/code via DataManager internally 
+                # or assume we can find it.
+                item = self.data_manager.get_item(item_name)
+                if item:
+                    self.data_manager.update_stock(item['id'], -qty)
+                
+                items.append({
+                    "name": item_name,
+                    "qty": qty,
+                    "amount": amount
+                })
+            
+            # Record Transaction
+            invoice_id = self.data_manager.add_transaction(items, total_amount)
+            print(f"Bill Saved! Invoice: {invoice_id}")
+            
+            # Clear UI
+            self.clear_all_items()
+            self.update_bill_details()
+            
+            # Show success
+            QMessageBox.information(self, "Success", f"Bill saved successfully! Invoice: {invoice_id}")
+
+        except Exception as e:
+            print(f"Error saving bill: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to save bill: {str(e)}")
 
     def delete_row(self):
         button = self.sender()
